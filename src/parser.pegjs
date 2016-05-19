@@ -2,7 +2,8 @@ start = tree
 
 tree = tree:node+ {
   var root = { type: 'tag', name: 'div', attrs: {}, children: tree };
-  return { type: 'component', root: root };
+  var component = { type: 'component', root: root };
+  return JSON.stringify(component, null, 2);
 }
 
 text = text:[^<>{}]+ {

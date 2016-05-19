@@ -36,7 +36,8 @@ module.exports = (function() {
         peg$c1 = peg$FAILED,
         peg$c2 = function(tree) {
           var root = { type: 'tag', name: 'div', attrs: {}, children: tree };
-          return { type: 'component', root: root };
+          var component = { type: 'component', root: root };
+          return JSON.stringify(component, null, 2);
         },
         peg$c3 = /^[^<>{}]/,
         peg$c4 = { type: "class", value: "[^<>{}]", description: "[^<>{}]" },
