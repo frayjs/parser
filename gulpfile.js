@@ -7,7 +7,7 @@ var pegjs = require('gulp-pegjs');
 var wrapper = require('gulp-wrapper');
 
 gulp.task('clean', function () {
-  return del(['dist']);
+  return del(['tmp', 'dist']);
 });
 
 gulp.task('lint', ['clean'], function () {
@@ -22,15 +22,20 @@ gulp.task('lint', ['clean'], function () {
     .pipe(eslint.failOnError());
 });
 
-gulp.task('test', ['lint']);
-
 gulp.task('pegjs', ['lint'], function () {
   return gulp.src('src/**/*.pegjs')
     .pipe(pegjs())
     .pipe(wrapper({
       header: 'module.exports = '
     }))
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest('tmp/build'));
 });
 
 gulp.task('build', ['pegjs']);
+
+gulp.task('test', ['build']);
+
+gulp.task('dist', ['test'], function () {
+  return gulp.src('tmp/build/**')
+    .pipe(gulp.dest('dist'));
+});

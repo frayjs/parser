@@ -19,10 +19,10 @@
   "scripts": {
     "setup": "npm install",
     "upgrade": "npm update",
-    "lint": "gulp lint",
     "test": "gulp test",
     "build": "gulp build",
-    "precommit": "gulp build && git add --all",
+    "dist": "gulp dist",
+    "precommit": "npm run dist && git add --all",
     "patch": "mversion patch -mn",
     "minor": "mversion minor -mn",
     "major": "mversion major -mn"
