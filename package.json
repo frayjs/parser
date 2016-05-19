@@ -19,8 +19,8 @@
   "scripts": {
     "setup": "npm install",
     "upgrade": "npm update",
-    "test": "gulp test",
     "build": "gulp build",
+    "test": "gulp test",
     "dist": "gulp dist",
     "precommit": "npm run dist && git add --all",
     "patch": "mversion patch -mn",
