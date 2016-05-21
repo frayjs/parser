@@ -36,6 +36,6 @@ gulp.task('build', ['pegjs']);
 gulp.task('test', ['build']);
 
 gulp.task('dist', ['test'], function () {
-  return gulp.src('tmp/build/**')
+  return gulp.src(['src/**/*.js', 'tmp/build/**'])
     .pipe(gulp.dest('dist'));
 });

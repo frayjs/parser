@@ -1,9 +1,10 @@
 'use strict';
 
-var parser = require('../dist/parser');
+var parser = require('../tmp/build/parser');
+var stdout = require('../src/cli/helpers/stdout');
 
-var stdout = function (output) {
-  process.stdout.write(output + '\n');
+var parse = function (source) {
+  stdout(JSON.stringify(parser.parse(source), null, 2));
 };
 
-stdout(parser.parse('<div class="greeting">Hello world!</div>'));
+parse('<div class="greeting">Hello world!</div>');

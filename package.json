@@ -8,6 +8,9 @@
   },
   "license": "MIT",
   "main": "dist/parser.js",
+  "bin": {
+    "parser": "dist/cli/cli.js"
+  },
   "devDependencies": {
     "gulp": "^3.9.1",
     "gulp-eslint": "^2.0.0",
