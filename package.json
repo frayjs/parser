@@ -9,7 +9,7 @@
   "license": "MIT",
   "main": "dist/parser.js",
   "bin": {
-    "parser": "dist/cli/cli.js"
+    "parser": "dist/cli.js"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
