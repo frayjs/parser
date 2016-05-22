@@ -6,11 +6,11 @@ Template parser
 Usage
 -----
 
-### CLI
+**CLI**
 
     echo '<div class="greeting">Hello { user.name }!</div>' | parser
 
-### Programatically
+**Programatically**
 
 ```js
 var parser = require('fray.parser');
