@@ -1,9 +1,8 @@
 #!/usr/bin/env node
 'use strict';
 
-var readFile = require('./helpers/readFile');
-var readStdin = require('./helpers/readStdin');
-var echo = require('./helpers/echo');
+var echo = require('cli/echo');
+var cat = require('cli/cat');
 var parser = require('./parser');
 
 var parse = function (source) {
@@ -11,11 +10,11 @@ var parse = function (source) {
 };
 
 if (!process.stdin.isTTY) {
-  echo(parse(readStdin()));
+  echo(parse(cat()));
   return;
 }
 
 var args = process.argv.slice(2);
 var filepath = args[0];
 
-echo(parse(readFile(filepath)));
+echo(parse(cat(filepath)));

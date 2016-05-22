@@ -11,6 +11,9 @@
   "bin": {
     "parser": "dist/cli.js"
   },
+  "dependencies": {
+    "cli": "github:pfraces/cli"
+  },
   "devDependencies": {
     "gulp": "^3.9.1",
     "gulp-eslint": "^2.0.0",
