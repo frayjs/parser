@@ -55,7 +55,6 @@ Node = node:(TextNode / ExpressionNode / ElementNode) {
 }
 
 Root = nodes:Node* Space {
-  var root = { type: 'ElementNode', name: 'div', attrs: {}, children: nodes };
-  return { type: 'Root', root: root };
+  return { type: 'Root', children: nodes };
 }
 

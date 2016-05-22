@@ -24,37 +24,32 @@ console.log(JSON.stringify(parser.parse(template), null, 2));
 ```json
 {
   "type": "Root",
-  "root": {
-    "type": "ElementNode",
-    "name": "div",
-    "attrs": {},
-    "children": [
-      {
-        "type": "ElementNode",
-        "name": "div",
-        "attrs": {
-          "class": "greeting"
+  "children": [
+    {
+      "type": "ElementNode",
+      "name": "div",
+      "attrs": {
+        "class": "greeting"
+      },
+      "children": [
+        {
+          "type": "TextNode",
+          "value": "Hello"
         },
-        "children": [
-          {
-            "type": "TextNode",
-            "value": "Hello"
-          },
-          {
-            "type": "ExpressionNode",
-            "value": [
-              "user",
-              "name"
-            ]
-          },
-          {
-            "type": "TextNode",
-            "value": "!"
-          }
-        ]
-      }
-    ]
-  }
+        {
+          "type": "ExpressionNode",
+          "value": [
+            "user",
+            "name"
+          ]
+        },
+        {
+          "type": "TextNode",
+          "value": "!"
+        }
+      ]
+    }
+  ]
 }
 ```
 

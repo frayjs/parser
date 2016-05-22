@@ -99,8 +99,7 @@ module.exports = (function() {
           return node;
         },
         peg$c39 = function(nodes) {
-          var root = { type: 'ElementNode', name: 'div', attrs: {}, children: nodes };
-          return { type: 'Root', root: root };
+          return { type: 'Root', children: nodes };
         },
 
         peg$currPos          = 0,
