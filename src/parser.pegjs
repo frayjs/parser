@@ -1,62 +1,61 @@
 start = Root
 
-ws = [ \t\n]*
-singlequote = "'"
-doublequote = '"'
+Space = [ \t\n]*
+Quot = '"'
 
-word = ws word:[^<>{}" \t\n]+ {
+Word = Space word:[^<>{}" \t\n]+ {
   return word.join('');
 }
 
-text = text:word+ {
+Text = text:Word+ {
   return text.join(' ');
 }
 
-identifier = first:[a-zA-Z_] rest:[a-zA-Z0-9_]* {
+Identifier = first:[a-zA-Z_] rest:[a-zA-Z0-9_]* {
   return first + rest.join('');
 }
 
-member = "." member:identifier {
+Member = "." member:Identifier {
   return member;
 }
 
-dotexpr = first:identifier rest:member* {
+DotExpression = first:Identifier rest:Member* {
   return [ first ].concat(rest);
 }
 
-expr = ws "{{" ws expr:dotexpr ws "}}" {
+Expression = Space "{" Space expr:DotExpression Space "}" {
   return expr;
 }
 
-tagattr = ws name:identifier "=" doublequote value:text? doublequote {
+ElementAttribute = Space name:Identifier "=" Quot value:Text? Quot {
   return { name: name, value: value || '' };
 }
 
-tagattrs = attrs:tagattr* {
+ElementAttributes = attrs:ElementAttribute* {
   return attrs.reduce(function (acc, attr) {
     acc[attr.name] = attr.value;
     return acc;
   }, {});
 }
 
-TextNode = value:text {
+TextNode = value:Text {
   return { type: 'TextNode', value: value };
 }
 
-ExprNode = value:expr {
-  return { type: 'ExprNode', value: value };
+ExpressionNode = value:Expression {
+  return { type: 'ExpressionNode', value: value };
 }
 
-TagNode = ws "<" name:identifier attrs:tagattrs ">" children:Node* ws "</" identifier? ">" {
-  return { type: 'TagNode', name: name, attrs: attrs, children: children };
+ElementNode = Space "<" name:Identifier attrs:ElementAttributes ">" children:Node* Space "</" Identifier? ">" {
+  return { type: 'ElementNode', name: name, attrs: attrs, children: children };
 }
 
-Node = node:(TextNode / ExprNode / TagNode) {
+Node = node:(TextNode / ExpressionNode / ElementNode) {
   return node;
 }
 
-Root = nodes:Node* ws {
-  var root = { type: 'TagNode', name: 'div', attrs: {}, children: nodes };
+Root = nodes:Node* Space {
+  var root = { type: 'ElementNode', name: 'div', attrs: {}, children: nodes };
   return { type: 'Root', root: root };
 }
 
